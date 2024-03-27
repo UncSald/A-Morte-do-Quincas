@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A Morte E A Morte de Quincas</title>
+
+        <script src="/node_modules/phaser/dist/phaser.min.js"></script>
+        <script src="/src/introScene.js"></script>
+        <script src="/src/dinoScene.js"></script>
+        <script src="/src/barScene.js"></script>
+        <script src="/src/barGame.js"></script>
+        <script src="/src/animationScene.js"></script>
+
+        <script>
+            var introScene = new InitialScene();
+            var dinoScene = new DinoScene();
+            var barScene = new BarScene();
+            var barGame = new BarGame();
+            var animationScene = new AnimationScene();
+            var config = {
+                type: Phaser.AUTO,
+                
+                width: 350,
+                height: 500,
+                backgroundColor: '#898e99',
+                
+                physics: {
+                    default: 'arcade',
+                    arcade: {
+                        debug: false
+                    }
+                },
+
+                scale: {
+                    mode: Phaser.Scale.CENTER_BOTH
+                },
+
+                scene: {initial: introScene, 
+                dino: dinoScene,
+                bars: barScene,
+                game: barGame,
+                animation: animationScene
+                }
+                
+            };
+        </script>
+        
+    </head>
+    <body>
+
+        <div id="game"></div>
+
+        <script>
+            var game = new Phaser.Game(config);
+
+            game.scene.add('initial', introScene);
+            game.scene.add('dino', dinoScene);
+            game.scene.add('bar', barScene);
+            game.scene.add('game', barGame);
+            game.scene.add('animation', animationScene);
+
+            game.scene.start('initial');    
+        </script>
+
+    </body>
+</html>
